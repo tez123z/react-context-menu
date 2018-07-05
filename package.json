@@ -1,6 +1,6 @@
 {
   "name": "react-context-menu",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A lightweight right-click context menu implemented in React.",
   "main": "index.js",
   "scripts": {
