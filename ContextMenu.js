@@ -12,7 +12,7 @@ export default class ContextMenu extends React.Component {
 
   componentDidMount() {
     let context = document.getElementById(this.props.contextID);
-    context.addEventListener('contextmenu', () => {
+    context.addEventListener('contextmenu', (event) => {
       this.openContextMenu(event)
     });
 

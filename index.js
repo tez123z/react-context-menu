@@ -57,7 +57,7 @@ var ContextMenu = function (_React$Component) {
       var _this2 = this;
 
       var context = document.getElementById(this.props.contextID);
-      context.addEventListener('contextmenu', function () {
+      context.addEventListener('contextmenu', function (event) {
         _this2.openContextMenu(event);
       });
 
