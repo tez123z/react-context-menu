@@ -29,7 +29,7 @@ export default class ContextMenu extends React.Component {
         {this.props.items.map((item) => {
           let clickHandler = () => {
             this.closeContextMenu();
-            item.function(this.state.target);
+            item.onClick(this.state.target);
           };
           let label = item.label;
           let icon = item.icon;
@@ -59,7 +59,7 @@ export default class ContextMenu extends React.Component {
       'left: ' + (event.clientX + xOffset) + 'px;' +
       'top: ' + (event.clientY + yOffset) + 'px;' +
       'visibility: visible;';
-  }
+  };
 
   closeContextMenu = () => {
     let menu = document.getElementById('contextMenu');

@@ -16,17 +16,10 @@ Import the component into your project:
 import ContextMenu from 'react-context-menu';
 ```
 
-Pass a ```contextID```, and an array of menu items with icons, labels, and functions through props -- like so:
+Pass a ```contextID```, and an array of menu items with labels, and onClick functions -- like so:
 
 ```jsx
-<ContextMenu contextID={'clickable-area'} items={[{'icon': wheel, 'label': 'Configure', 'function': this.configHandler}, {'icon': trash, 'label': 'Delete', 'function': this.deleteHandler}]} />
-```
-
-Where ```wheel``` and ```trash``` are image files imported into the parent component like so:
-
-```javascript
-import wheel from './wheel.svg';
-import trash from './trash.svg';
+<ContextMenu contextID={'clickable-area'} items={[{label: 'Configure', onClick: this.configHandler}, {label: 'Delete', onClick: this.deleteHandler}]} />
 ```
 
 The ```contextID``` is the area in which you'd like right-click functionality. Add a unique ```id``` to your right-clickable element, and react-context-menu will be available anywhere within that element.
