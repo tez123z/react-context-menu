@@ -1,69 +1,71 @@
 import React from 'react';
-import './style.css';
+import PropTypes from 'prop-types';
 
-export default class ContextMenu extends React.Component {
+import './style.css';
+import MenuItem from './@components/MenuItem';
+
+export default class ContextMenu extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      target: ''
-    }
+      target: '',
+    };
   }
 
   componentDidMount() {
-    let context = document.getElementById(this.props.contextID);
+    const { contextId } = this.props;
+    const context = document.getElementById(contextId);
     context.addEventListener('contextmenu', (event) => {
-      this.openContextMenu(event)
+      this.openContextMenu(event);
     });
 
-    let menu = document.getElementById('contextMenu');
+    const menu = document.getElementById('contextMenu');
     menu.addEventListener('mouseleave', () => {
-      this.closeContextMenu()
+      this.closeContextMenu();
     });
+  }
 
+  openContextMenu(event) {
+    event.preventDefault();
+    this.setState({ target: event.target });
+
+    const xOffset = Math.max(document.documentElement.scrollLeft, document.body.scrollLeft);
+    const yOffset = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+
+    const menu = document.getElementById('contextMenu');
+
+    menu.style.cssText = `left: ${event.clientX + xOffset}px;`
+      + `top: ${event.clientY + yOffset}px;`
+      + 'visibility: visible;';
+  }
+
+  closeContextMenu() {
+    const menu = document.getElementById('contextMenu');
+    menu.style.cssText = 'visibility: hidden;';
   }
 
   render() {
+    const { items } = this.props;
     return (
       <div id="contextMenu">
-        {this.props.items.map((item) => {
-          let clickHandler = () => {
-            this.closeContextMenu();
-            item.onClick(this.state.target);
-          };
-          let label = item.label;
-          let icon = item.icon;
-          return (
-            <span onClick={clickHandler} key={label}>
-              {icon &&
-              <img className="icon" src={icon} role="presentation"/>
-              }
-              {label}
-            </span>
-          );
-        })}
+        {items.map(item => (
+          <MenuItem item={item} />
+        ))}
       </div>
     );
   }
-
-  openContextMenu = (event) => {
-    event.preventDefault();
-    this.setState({target: event.target});
-
-    let xOffset = Math.max(document.documentElement.scrollLeft, document.body.scrollLeft);
-    let yOffset = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
-
-    let menu = document.getElementById('contextMenu');
-
-    menu.style.cssText =
-      'left: ' + (event.clientX + xOffset) + 'px;' +
-      'top: ' + (event.clientY + yOffset) + 'px;' +
-      'visibility: visible;';
-  };
-
-  closeContextMenu = () => {
-    let menu = document.getElementById('contextMenu');
-    menu.style.cssText = 'visibility: hidden;';
-
-  }
 }
+
+ContextMenu.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    icon: PropTypes.string,
+  })),
+  contextId: PropTypes.string.isRequired,
+};
+
+ContextMenu.defaultProps = {
+  items: [],
+};

@@ -16,12 +16,12 @@ Import the component into your project:
 import ContextMenu from 'react-context-menu';
 ```
 
-Pass a ```contextID```, and an array of menu items with labels, and onClick functions -- like so:
+Pass a ```contextId```, and an array of menu items with labels, onClick functions, and optional icon paths -- like so:
 
 ```jsx
-<ContextMenu contextID={'clickable-area'} items={[{label: 'Configure', onClick: this.configHandler}, {label: 'Delete', onClick: this.deleteHandler}]} />
+<ContextMenu contextId={'clickable-area'} items={[{label: 'Configure', onClick: this.configHandler, icon: 'path/to/icon.svg'}, {label: 'Delete', onClick: this.deleteHandler}]} />
 ```
 
-The ```contextID``` is the area in which you'd like right-click functionality. Add a unique ```id``` to your right-clickable element, and react-context-menu will be available anywhere within that element.
+The ```contextId``` is the area in which you'd like right-click functionality. Add a unique ```id``` to your right-clickable element, and react-context-menu will be available anywhere within that element.
 
-Your functions will reside in your parent component. By default, when you right click an element, the ```event.target``` is stored in state and is passed to the menu item functions. This can be useful for DOM manipulation -- for instance, removing an element from the DOM via a "delete" function passed to ```ContextMenu```'s props.
+By default, when you right click an element, the ```event.target``` is stored in state and is passed to the menu item functions. This can be useful for DOM manipulation -- for instance, removing an element from the DOM via a "delete" function passed to ```ContextMenu```'s props.
