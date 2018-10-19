@@ -23,5 +23,3 @@ Pass a ```contextId```, and an array of menu items with labels, onClick function
 ```
 
 The ```contextId``` is the area in which you'd like right-click functionality. Add a unique ```id``` to your right-clickable element, and react-context-menu will be available anywhere within that element.
-
-By default, when you right click an element, the ```event.target``` is stored in state and is passed to the menu item functions. This can be useful for DOM manipulation -- for instance, removing an element from the DOM via a "delete" function passed to ```ContextMenu```'s props.
