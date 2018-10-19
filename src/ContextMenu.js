@@ -50,7 +50,7 @@ export default class ContextMenu extends React.PureComponent {
     return (
       <div id="contextMenu">
         {items.map(item => (
-          <MenuItem item={item} />
+          <MenuItem item={item} key={item.label}/>
         ))}
       </div>
     );
