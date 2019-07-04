@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './style.css';
 import MenuItem from './@components/MenuItem';
 
 export default class ContextMenu extends React.PureComponent {
@@ -35,20 +34,23 @@ export default class ContextMenu extends React.PureComponent {
 
     const menu = document.getElementById('contextMenu');
 
-    menu.style.cssText = `left: ${event.clientX + xOffset}px;`
+    menu.style.cssText = menu.style.cssText + `left: ${event.clientX + xOffset}px;`
       + `top: ${event.clientY + yOffset}px;`
       + 'visibility: visible;';
   }
 
   closeContextMenu() {
     const menu = document.getElementById('contextMenu');
-    menu.style.cssText = 'visibility: hidden;';
+    menu.style.cssText = menu.style.cssText + 'visibility: hidden;';
   }
 
   render() {
     const { items } = this.props;
     return (
-      <div id="contextMenu">
+      <div
+        id="contextMenu"
+        style={{"position":"absolute","display":"flex","flexFlow":"column","border":"1px solid rgba(0,0,0,0.15)","borderRadius":"2px","boxShadow":"0 1px 1px 1px rgba(0,0,0,0.05)","padding":"10px 15px","background":"#f8f8f8","visibility":"hidden"}}
+      >
         {items.map(item => (
           <MenuItem item={item} key={item.label}/>
         ))}

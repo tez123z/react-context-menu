@@ -9,7 +9,12 @@ const MenuItem = ({ item }) => {
   } = item;
 
   return (
-    <span className="menuItem" onClick={onClick} key={label}>
+    <span
+      className="menuItem"
+      onClick={onClick}
+      key={label}
+      style={{"cursor":"pointer","fontSize":"14px","display":"flex","alignItems":"center","justifyContent":"flex-start","marginBottom":"7px"}}
+    >
       {icon && <img className="icon" src={icon} />}
       {label}
     </span>
