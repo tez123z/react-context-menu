@@ -23,3 +23,5 @@ Pass a ```contextId```, and an array of menu items with labels, onClick function
 ```
 
 The ```contextId``` is the area in which you'd like right-click functionality. Add a unique ```id``` to your right-clickable element, and react-context-menu will be available anywhere within that element.
+
+Pass ```closeOnClick``` (boolean defauled to false) to ```ContextMenu``` to close the menu upon item click.
