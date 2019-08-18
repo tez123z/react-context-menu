@@ -6,6 +6,9 @@ import MenuItem from './@components/MenuItem';
 export default class ContextMenu extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.getItems = this.getItems.bind(this);
+    this.openContextMenu = this.openContextMenu.bind(this);
+    this.closeContextMenu = this.closeContextMenu.bind(this);
 
     this.state = {
       target: '',
@@ -44,14 +47,28 @@ export default class ContextMenu extends React.PureComponent {
     menu.style.cssText = menu.style.cssText + 'visibility: hidden;';
   }
 
+  getItems() {
+    const { items, closeOnClick } = this.props;
+    if (closeOnClick) {
+      return items.map(item => ({
+        ...item,
+        onClick: () => {
+          this.closeContextMenu();
+          item.onClick();
+        },
+      }))
+    } else {
+      return items;
+    }
+  }
+
   render() {
-    const { items } = this.props;
     return (
       <div
         id="contextMenu"
         style={{"position":"absolute","display":"flex","flexFlow":"column","border":"1px solid rgba(0,0,0,0.15)","borderRadius":"2px","boxShadow":"0 1px 1px 1px rgba(0,0,0,0.05)","padding":"10px 15px","background":"#f8f8f8","visibility":"hidden"}}
       >
-        {items.map(item => (
+        {this.getItems().map(item => (
           <MenuItem item={item} key={item.label}/>
         ))}
       </div>
@@ -66,8 +83,10 @@ ContextMenu.propTypes = {
     icon: PropTypes.string,
   })),
   contextId: PropTypes.string.isRequired,
+  closeOnClick: PropTypes.bool,
 };
 
 ContextMenu.defaultProps = {
   items: [],
+  closeOnClick: false,
 };
