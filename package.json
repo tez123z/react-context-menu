@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amurp/react-context-menu.git"
+    "url": "git+https://github.com/tez123z/react-context-menu.git"
   },
   "keywords": [
     "react",
@@ -47,7 +47,7 @@
   "author": "Aaron Murphy",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/amurp/react-context-menu/issues"
+    "url": "https://github.com/tez123z/react-context-menu/issues"
   },
-  "homepage": "https://github.com/amurp/react-context-menu#readme"
+  "homepage": "https://github.com/tez123z/react-context-menu#readme"
 }
