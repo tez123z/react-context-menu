@@ -65,13 +65,12 @@ export default class ContextMenu extends React.PureComponent {
   render() {
 
     const default_styles = {"position":"absolute","display":"flex","flexFlow":"column","border":"1px solid rgba(0,0,0,0.15)","borderRadius":"2px","boxShadow":"0 1px 1px 1px rgba(0,0,0,0.05)","padding":"10px 15px","background":"#f8f8f8","visibility":"hidden","z-Index":100000};
-    let styles = this.props.styles;
-    var final_styles = {...default_styles,...styles};
-
+    const styles = this.props.styles || {};
+    
     return (
       <div
         id="contextMenu"
-        style={final_styles}
+        style={{...default_styles,...styles}}
       >
         {this.getItems().map(item => (
           <MenuItem item={item} key={item.label}/>
